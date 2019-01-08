@@ -217,6 +217,68 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  public void negate()
+  {
+   Pixel[][] pixels = this.getPixels2D();
+   for(Pixel[] rowArray : pixels)
+   {
+      for(Pixel pixelObj : rowArray)
+      {
+         pixelObj.setRed(255-pixelObj.getRed());
+         pixelObj.setGreen(255-pixelObj.getGreen());
+         pixelObj.setBlue(255-pixelObj.getBlue());
+      }
+   }
+  }
+  
+  
+  public void grayscale()
+  {
+   Pixel[][] pixels = this.getPixels2D();
+   for(Pixel[] rowArray : pixels)
+   {
+      for(Pixel pixelObj : rowArray)
+      {
+         int total = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue())/3;
+         pixelObj.setRed(total);
+         pixelObj.setGreen(total);
+         pixelObj.setBlue(total);
+      }
+   }
+  }
+  
+  public void mirrorRightToLeft()
+  {
+   Pixel[][] pixels = this.getPixels2D();
+   for(int i = 0; i <= Pixel.length/2; i++)
+   {
+      int[] tmp = new int[3];
+      for(int j = 0; j <= Pixel[].length/2; i++)
+      {
+         tmp = Pixel[i][j];
+         Pixel pixelObj = Pixel[i][Pixel[i][j+(Pixel[].length-2*j)];
+         pixelObj.setRed(tmp.getRed);
+         pixelObj.setBlue(tmp.getBlue);
+         pixelObj.setGreen(tmp.getGreen);
+      }
+   }
+  }
+  
+  
+  
   
   /* Main method for testing - each class in Java can have a main 
    * method 
@@ -225,7 +287,7 @@ public class Picture extends SimplePicture
   {
     Picture beach = new Picture("beach.jpg");
     beach.explore();
-    beach.zeroBlue();
+    beach.mirrorRightToLeft();
     beach.explore();
   }
   
